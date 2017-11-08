@@ -1,0 +1,18 @@
+#set($pageTile="添加列表")
+#extends("/page/layout/default.vm")
+  
+  ## 内部样式
+  #block("style")
+
+  #end
+
+  ## 当前页面模块
+  #block("content")
+
+  #end
+
+  ## 当前页面脚本
+  #block("page_script")
+
+  #end
+#end

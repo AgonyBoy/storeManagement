@@ -12,6 +12,8 @@
     #block("style")#end                                                                                       ## 页面样式占位符
   </head>
   <body>
+    #block("header")#end                                                                                      ## 顶部标题模块占位符
+    #block("nav")#end                                                                                         ## 底部菜单模块占位符
     <div class="mui-content">
       #block("content")#end                                                                                   ## HTML内容占位符
     </div>
