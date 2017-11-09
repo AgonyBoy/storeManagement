@@ -1,4 +1,9 @@
 <header class="mui-bar mui-bar-nav">
-  <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-  <h1 class="mui-title">$!title</h1>
+  #if($!header.leftBtn)
+    <a class="$!header.leftBtn"></a>
+  #end
+  #if($!header.rightBtn)
+    <a class="$!header.rightBtn" #if($!header.rightUrl)onclick="javascript:location.href='$!header.rightUrl';"#end></a>
+  #end
+  <h1 class="mui-title">$!header.title</h1>
 </header>

@@ -8,6 +8,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="#if($!pageTile)$!pageTile#else网点管理#end">
     <link rel="stylesheet" href="/components/mui/css/mui.min.css"/>                                           ## MUI主框架样式
+    <link rel="stylesheet" href="/static/css/df-icon.css"/>                                                   ## 自定义字体图标样式
     <link rel="stylesheet" href="/static/css/public.css"/>                                                    ## 项目公共样式
     #block("style")#end                                                                                       ## 页面样式占位符
   </head>

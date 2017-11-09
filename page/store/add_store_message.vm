@@ -8,7 +8,7 @@
 
   ## 头部标题模块
   #block("header")
-      #widget("/widget/header.vm" "var:title=门店信息录入")
+      #widget("/widget/header.vm" "var:header={title:'门店信息录入',leftBtn:'mui-action-back mui-icon mui-icon-left-nav mui-pull-left'}")
   #end
 
   ## 当前页面模块

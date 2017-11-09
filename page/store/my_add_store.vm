@@ -3,16 +3,88 @@
   
   ## 内部样式
   #block("style")
+    <link rel="stylesheet" href="/static/css/my_add_store.css"/> 
+  #end
 
+  ## 头部标题模块
+  #block("header")
+      #widget("/widget/header.vm" "var:header={title:'我添加的门店',leftBtn:'mui-action-back mui-icon mui-icon-left-nav mui-pull-left',rightBtn:'mui-icon smt tianjiafangyuan mui-pull-right',rightUrl:'/addStoreMessage'}")
   #end
 
   ## 当前页面模块
   #block("content")
+    <div class="store-list">
+       <ul>
+          <li class="store" onclick="javascript:mui.toast('使用location.href=url查看详情');">
+            <span class="name"><i class="mui-icon smt bangongdalou"></i>二十世纪不动产(龙凯加盟店)</span>
+            <div class="summary">
+              <label>图片数：0张</label>
+              <label>联系人：1人</label>
+              <p>规模类型：中规模（5-10人）</p>
+              <p>更新日期：2017-11-10 03:32:33</p>
+              <span class="address"><i class="mui-icon smt location-copy"></i>四川省成都市成华区万年场XX路xx街道xx号1892-302室</span>
+            </div>
+          </li>
+          <li class="store" onclick="javascript:mui.toast('使用location.href=url查看详情');">
+            <span class="name"><i class="mui-icon smt bangongdalou"></i>二十世纪不动产(龙凯加盟店)</span>
+            <div class="summary">
+              <label>图片数：0张</label>
+              <label>联系人：1人</label>
+              <p>规模类型：中规模（5-10人）</p>
+              <p>更新日期：2017-11-10 03:32:33</p>
+              <span class="address"><i class="mui-icon smt location-copy"></i>四川省成都市成华区万年场XX路xx街道xx号1892-302室</span>
+            </div>
+          </li>
+          <li class="store" onclick="javascript:mui.toast('使用location.href=url查看详情');">
+            <span class="name"><i class="mui-icon smt bangongdalou"></i>二十世纪不动产(龙凯加盟店)</span>
+            <div class="summary">
+              <label>图片数：0张</label>
+              <label>联系人：1人</label>
+              <p>规模类型：中规模（5-10人）</p>
+              <p>更新日期：2017-11-10 03:32:33</p>
+              <span class="address"><i class="mui-icon smt location-copy"></i>四川省成都市成华区万年场XX路xx街道xx号1892-302室</span>
+            </div>
+          </li>
+          <li class="store" onclick="javascript:mui.toast('使用location.href=url查看详情');">
+            <span class="name"><i class="mui-icon smt bangongdalou"></i>二十世纪不动产(龙凯加盟店)</span>
+            <div class="summary">
+              <label>图片数：0张</label>
+              <label>联系人：1人</label>
+              <p>规模类型：中规模（5-10人）</p>
+              <p>更新日期：2017-11-10 03:32:33</p>
+              <span class="address"><i class="mui-icon smt location-copy"></i>四川省成都市成华区万年场XX路xx街道xx号1892-302室</span>
+            </div>
+          </li>
+          <li class="store" onclick="javascript:mui.toast('使用location.href=url查看详情');">
+            <span class="name"><i class="mui-icon smt bangongdalou"></i>二十世纪不动产(龙凯加盟店)</span>
+            <div class="summary">
+              <label>图片数：0张</label>
+              <label>联系人：1人</label>
+              <p>规模类型：中规模（5-10人）</p>
+              <p>更新日期：2017-11-10 03:32:33</p>
+              <span class="address"><i class="mui-icon smt location-copy"></i>四川省成都市成华区万年场XX路xx街道xx号1892-302室</span>
+            </div>
+          </li>
 
+          ## 空数据标签组
+          ## <li><p class="smt nulldata"></p></li>
+
+       </ul>
+    </div>
+
+    ## 数据大于分页时，显示当前页和总页数标签组
+    <span class="result">1/10</span>
+
+    <div class="pager">
+      <label><button class="mui-btn mui-btn-primary" disabled="disabled">首页</button></label>
+      <label><button class="mui-btn mui-btn-primary">下一页</button></label>
+    </div>
   #end
 
   ## 当前页面脚本
   #block("page_script")
+    <script>
 
+    </script>
   #end
 #end
