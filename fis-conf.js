@@ -59,3 +59,4 @@ fis.config.merge({
 // js 模板支持
 fis.config.set('modules.parser.tmpl', 'utc');
 fis.config.set('roadmap.ext.tmpl', 'js');
+fis.config.set('roadmap.domain', 'aop');
