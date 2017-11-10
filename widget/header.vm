@@ -1,6 +1,6 @@
 <header class="mui-bar mui-bar-nav">
   #if($!header.leftBtn)
-    <a class="$!header.leftBtn"></a>
+    <a class="$!header.leftBtn" #if($!header.leftUrl)onclick="javascript:location.href='$!header.leftUrl';"#end></a>
   #end
   #if($!header.rightBtn)
     <a class="$!header.rightBtn" #if($!header.rightUrl)onclick="javascript:location.href='$!header.rightUrl';"#end></a>

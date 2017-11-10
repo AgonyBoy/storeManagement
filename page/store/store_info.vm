@@ -3,16 +3,76 @@
   
   ## 内部样式
   #block("style")
+    <style>
+      span.numbers{
+        position:absolute;
+        width:40px;
+        height:40px;
+        display: inline-block;
+        border-radius: 50%;
+        background-color: rgba(0,0,0,0.6);
+        color:#fff;
+        font-size: 14px;
+        text-align: center;
+        line-height: 40px;
+        right:10px;
+        bottom:10px;
+        z-index: 9;
+      }
+      div.mui-slider-group{
+        height:240px;
+        width:100%;
+      }
+      div.mui-slider-item > img:first-child{
+        height:100%;
+        width:auto !important;
+      }
+      div.mui-slider-item > img:last-child{
+        position: absolute;
+        height:100%;
+        width:100%;
+        top:0;
+        left:0;
+        z-index: -1;
+        -webkit-filter: blur(5px);
+        -moz-filter: blur(5px);
+        -o-filter: blur(5px);
+        -ms-filter: blur(5px);
+        filter: blur(5px);
+      }
+    </style>
+  #end
 
+  ## 头部标题模块
+  #block("header")
+      #widget("/widget/header.vm" "var:header={title:'门店详情',leftBtn:'mui-icon smt shouye2 mui-pull-left',leftUrl:'/main'}")
   #end
 
   ## 当前页面模块
   #block("content")
-
+    <div id="slider" class="mui-slider" >
+      <span class="numbers">1/3</span>
+      <div class="mui-slider-group mui-slider-loop">
+        <div class="mui-slider-item mui-slider-item-duplicate"><img src="/static/img/img3.jpg"/><img src="/static/img/img3.jpg"/></div>
+        <div class="mui-slider-item"><img src="/static/img/img1.jpg"/><img src="/static/img/img1.jpg"/></div>
+        <div class="mui-slider-item"><img src="/static/img/img2.jpg"/><img src="/static/img/img2.jpg"/></div>
+        <div class="mui-slider-item"><img src="/static/img/img3.jpg"/><img src="/static/img/img3.jpg"/></div>
+        <div class="mui-slider-item mui-slider-item-duplicate"><img src="/static/img/img1.jpg"/><img src="/static/img/img1.jpg"/></div>
+      </div>
+    </div>
   #end
 
   ## 当前页面脚本
   #block("page_script")
+  <script>
 
+    //监听图片滑动后的页面导航变动
+    document.querySelector('.mui-slider').addEventListener('slide', function(event) {
+      var str=(event.detail.slideNumber+1)+"/"+(document.getElementsByClassName("mui-slider-item").length-2);
+      document.getElementsByClassName("numbers")[0].innerHTML=str;
+    });
+
+    
+  </script>
   #end
 #end
