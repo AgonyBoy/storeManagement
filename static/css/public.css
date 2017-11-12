@@ -23,13 +23,14 @@ button[disabled]{background-color:#a9a9a9;border:0;}
 
 .more{position:relative;padding-right:20px !important;}
 .more:before{
-  right: 10px;
+  right: 8px;
   content: '\e583';
   font-family: Muiicons;
   font-size: 20px;
   line-height: 1;
   position: absolute;
   top: 50%;
+  z-index:9;
   display: inline-block;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
@@ -37,7 +38,15 @@ button[disabled]{background-color:#a9a9a9;border:0;}
   color: #bbb;
   -webkit-font-smoothing: antialiased;
 }
-
+.dashed-bottom{border-bottom:1px dashed #dfdfdf;}
+.label{
+  border-radius:3px;
+  font-size:14px;
+  color:#FFF;
+  padding: 0 10px;
+}
+.label-default{background-color:#a0a0a0;}
+.label-green{background-color:#57b8c1;}
 /*空数据样式*/
 p.nulldata{margin-top:80px;}
 p.nulldata:before{

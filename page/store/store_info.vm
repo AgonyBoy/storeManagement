@@ -3,50 +3,32 @@
   
   ## 内部样式
   #block("style")
-    <style>
-      span.numbers{
-        position:absolute;
-        width:40px;
-        height:40px;
-        display: inline-block;
-        border-radius: 50%;
-        background-color: rgba(0,0,0,0.6);
-        color:#fff;
-        font-size: 14px;
-        text-align: center;
-        line-height: 40px;
-        right:10px;
-        bottom:10px;
-        z-index: 9;
-      }
-      div.mui-slider-group{
-        height:240px;
-        width:100%;
-      }
-      div.mui-slider-item > img:first-child{
-        height:100%;
-        width:auto !important;
-      }
-      div.mui-slider-item > img:last-child{
-        position: absolute;
-        height:100%;
-        width:100%;
-        top:0;
-        left:0;
-        z-index: -1;
-        -webkit-filter: blur(5px);
-        -moz-filter: blur(5px);
-        -o-filter: blur(5px);
-        -ms-filter: blur(5px);
-        filter: blur(5px);
-      }
-    </style>
+    <link rel="stylesheet" href="/static/css/store_info.css"/>
   #end
 
   ## 头部标题模块
   #block("header")
       #widget("/widget/header.vm" "var:header={title:'门店详情',leftBtn:'mui-icon smt shouye2 mui-pull-left',leftUrl:'/main'}")
   #end
+
+  ## 底部导航栏(根据角色权限显示本模块)
+  #block("nav")
+    <nav class="mui-bar mui-bar-tab">
+      <a class="mui-tab-item mui-active" href="#tabbar">
+        <span class="mui-icon smt fangwugengxin"></span>
+        <span class="mui-tab-label">更新门店</span>
+      </a>
+      <a class="mui-tab-item mui-active" href="#tabbar">
+        <span class="mui-icon smt tupian"></span>
+        <span class="mui-tab-label">图片管理</span>
+      </a>
+      <a class="mui-tab-item mui-active" href="#tabbar">
+        <span class="mui-icon smt lianxiren"></span>
+        <span class="mui-tab-label">联系人管理</span>
+      </a>
+    </nav>
+  #end
+
 
   ## 当前页面模块
   #block("content")
@@ -60,18 +42,49 @@
         <div class="mui-slider-item mui-slider-item-duplicate"><img src="/static/img/img1.jpg"/><img src="/static/img/img1.jpg"/></div>
       </div>
     </div>
+    <span class="name"><i class="mui-icon smt bangongdalou"></i>二十世纪不动产(龙凯加盟店)</span>
+    <div class="row dashed-bottom more"><label>地理位置：<a href="#"><i class="mui-icon smt location-copy"></i>锦江区汇源北路99号超出部分省略号显示</a><label></div>
+    <div class="row">门店规模：<span class="label label-green">中规模（5-10人）</span></div>
+
+    ## 联系人显示模块
+    <div class="contacts">
+      <span><img src=""/></span>
+      <div class="contacts-set">
+        <p><strong>董丽丽</strong>（经理）</p>
+        <p><a href="tel:13543345670">13543345670</a></p>
+      </div>
+      <a href="tel:028-0000101"><i class="mui-icon mui-icon-phone"></i></a>
+    </div>
+    <div class="contacts">
+      <span><img src=""/></span>
+      <div class="contacts-set">
+        <p><strong>董丽丽</strong>（经理）</p>
+        <p><a href="tel:13543345670">13543345670</a></p>
+      </div>
+      <a href="tel:028-0000101"><i class="mui-icon mui-icon-phone"></i></a>
+    </div>
+
+    ## 门店备注或介绍内容
+    <div class="remarks">
+      <span>门店介绍</span>
+      <pre>
+我们的观点:
+流程掌控结果，细节决定成败。
+数量淘出质量，累计造就奇迹。
+数字说话，追求简单。
+      </pre>
+    </div>
   #end
 
   ## 当前页面脚本
   #block("page_script")
   <script>
 
-    //监听图片滑动后的页面导航变动
+    //监听图片滑动后显示第几张的处理
     document.querySelector('.mui-slider').addEventListener('slide', function(event) {
       var str=(event.detail.slideNumber+1)+"/"+(document.getElementsByClassName("mui-slider-item").length-2);
       document.getElementsByClassName("numbers")[0].innerHTML=str;
     });
-
     
   </script>
   #end
