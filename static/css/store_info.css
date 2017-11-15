@@ -81,6 +81,7 @@ span.numbers{
         top:50%;
         margin-top:-16px;
       }
+      .mui-slider .mui-slider-group .mui-slider-item{overflow:hidden;}
       div.contacts > a >.mui-icon{font-size:32px;}
       div.contacts > span{
         width:54px;

@@ -1,0 +1,27 @@
+#set($pageTile="门店联系人")
+#set($name="二十世纪不动产(龙凯加盟店)")
+#extends("/page/layout/default.vm")
+  
+  ## 内部样式
+  #block("style")
+
+  #end
+  ## 头部标题模块
+  #block("header")
+      <header class="mui-bar mui-bar-nav">
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+        <a class="mui-icon smt tianjiaren mui-pull-right" onclick="javascript:location.href='';"></a>
+        <h1 class="mui-title">$name</h1>
+      </header>
+  #end
+
+  ## 当前页面模块
+  #block("content")
+    <p class="smt nulldata"></p>
+  #end
+
+  ## 当前页面脚本
+  #block("page_script")
+
+  #end
+#end

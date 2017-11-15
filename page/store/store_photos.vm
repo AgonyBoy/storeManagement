@@ -1,0 +1,106 @@
+#set($pageTile="门店照片")
+#set($name="二十世纪不动产(龙凯加盟店)")
+#extends("/page/layout/default.vm")
+  
+  ## 内部样式
+  #block("style")
+    <link rel="stylesheet" href="/static/css/store_photos.css"/>
+  #end
+  ## 头部标题模块
+  #block("header")
+      <header class="mui-bar mui-bar-nav">
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>     ## 返回上一页
+        <a class="mui-icon smt tupian2 mui-pull-right" id="upload"></a>              ## 上传图片
+        <h1 class="mui-title">$name</h1>
+      </header>
+  #end
+
+  ## 当前页面模块
+  #block("content")
+    <input type="file" id="files" onchange="uploader(this)" name="file" accept="image/gif,image/jpeg" style="display:none"/>
+    
+    ## 空数据样式
+    ##<p class="smt nulldata"></p>
+
+    <ul id="photos">
+      <li class="photo">
+        <div class="img">
+          <img src="/static/img/img1.jpg"/>
+          <button class="mui-btn" pid="1">删除</button>
+        </div>
+      </li>
+      <li class="photo">
+        <div class="img">
+          <img src="/static/img/img2.jpg"/>
+          <button class="mui-btn" pid="2">删除</button>
+        </div>
+      </li>
+      <li class="photo">
+        <div class="img">
+          <img src="/static/img/img4.jpg"/>
+          <button class="mui-btn" pid="4">删除</button>
+        </div>
+      </li>
+      <li class="photo">
+        <div class="img">
+          <img src="/static/img/img3.jpg"/>
+          <button class="mui-btn" pid="3">删除</button>
+        </div>
+      </li>
+    </ul>
+  #end
+
+  ## 当前页面脚本
+  #block("page_script")
+  <script>
+
+      //监听图片删除事件
+      mui("#photos").on("tap","button",function(){
+        var pid = $(this).attr("pid");   //获取删除图片ID
+        var pdom=$(this).parent().parent();//获取父容器，用于删除成功后移除
+
+        mui.confirm('确定删除图片？', '', ['删除','取消'], function(e) {
+            if(e.index == 0) {
+                mui.toast("执行ajax删除");
+                pdom.remove();             //ajax回调函数执行成功后执行删除节点
+            }else{
+
+                mui.toast("取消删除");
+            }
+        })
+      });
+
+      //监听图片上传按钮响应
+      mui("header").on("tap","#upload",function(){
+        files.click();   //触发图片文件选择组件
+      });
+
+      //执行上传文件
+      function uploader(dom){
+        var _files=$(dom)[0].files;          //获取上传的图片文件
+        var formData = new FormData();       //创建表单数据
+
+            formData.append('storeId',"$!sid");  //参数，上传图片的门店ID
+
+            for(var i=0;i<_files.length;i++){
+              formData.append('file'+i,_files[i]);
+            }
+
+            if(_files.length>0){
+              $.ajax({
+                  url: '/uploadImg',
+                  type: 'POST',
+                  cache: false,
+                  data: formData,
+                  processData: false,
+                  contentType: false
+              }).done(function(res) {
+                mui.toast("上传图片成功！");
+              }).fail(function(res) {
+                mui.toast("上传图片失败，稍后再试！");
+              });
+            }
+      }
+  </script>
+  #end
+#end
