@@ -18,6 +18,18 @@
     <div class="mui-content">
       #block("content")#end                                                                                   ## HTML内容占位符
     </div>
+    <script>
+      var loadding = function(){
+        var loader = document.createElement("div");
+        loader.setAttribute("class","loadding");
+        document.body.appendChild(loader);
+        return loader;
+      }
+      loadding.move=function(){
+        document.body.removeChild(document.getElementsByClassName('loadding')[0]);
+      }
+
+    </script>
     <script type="text/javascript" src="/components/mui/js/mui.min.js"></script>                              ## MUI主框架JS
     <script type="text/javascript" src="/components/jquery/jquery.min.2.1.4.js"></script>                     ## JQuery框架JS
     #block("page_script")#end                                                                                 ## 页面脚本占位符

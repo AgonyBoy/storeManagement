@@ -4,24 +4,210 @@
   
   ## 内部样式
   #block("style")
-
+    <link rel="stylesheet" href="/static/css/store_info.css"/>
+    <style>
+      div.contacts{
+        border-top:0;
+        border-bottom:1px solid #dfdfdf;
+        padding-right:10px;
+      }
+      .contacts-set > button{
+        width:30px;
+        float:right;
+        margin-left:10px;
+        text-align:center;
+        height:30px;
+        font-size:22px !important;
+        padding:0;
+        line-height:30px;
+      }
+      div.mui-popup-text > p{
+        margin-top:20px;
+        text-align:left;
+        margin-bottom:5px;
+      }
+    </style>
   #end
   ## 头部标题模块
   #block("header")
       <header class="mui-bar mui-bar-nav">
         <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-        <a class="mui-icon smt tianjiaren mui-pull-right" onclick="javascript:location.href='';"></a>
+        <a class="mui-icon smt tianjiaren mui-pull-right" id="addUser"></a>
         <h1 class="mui-title">$name</h1>
       </header>
   #end
 
   ## 当前页面模块
   #block("content")
-    <p class="smt nulldata"></p>
+
+    ## 空数据样式
+    ## <p class="smt nulldata"></p>
+    <div class="contacts">
+      <span><img src=""/></span>
+      <div class="contacts-set">
+        <button class="mui-btn mui-icon mui-icon-more" id="editBtn"></button>
+        <button class="mui-btn mui-icon mui-icon-closeempty" id="deleteBtn"></button>
+        <p><strong>董丽丽</strong>（经理）</p>
+        <p><a href="tel:13543345670">13543345670</a></p>
+      </div>
+    </div>
+
+    <div class="contacts">
+      <span><img src=""/></span>
+      <div class="contacts-set">
+        <button class="mui-btn mui-icon mui-icon-more" id="editBtn"></button>
+        <button class="mui-btn mui-icon mui-icon-closeempty" id="deleteBtn"></button>
+        <p><strong>董丽丽</strong>（经理）</p>
+        <p><a href="tel:13543345670">13543345670</a></p>
+      </div>
+    </div>
+
+    <div class="contacts">
+      <span><img src=""/></span>
+      <div class="contacts-set">
+        <button class="mui-btn mui-icon mui-icon-more" id="editBtn"></button>
+        <button class="mui-btn mui-icon mui-icon-closeempty" id="deleteBtn"></button>
+        <p><strong>董丽丽</strong>（经理）</p>
+        <p><a href="tel:13543345670">13543345670</a></p>
+      </div>
+    </div>
+
+    <div class="contacts">
+      <span><img src=""/></span>
+      <div class="contacts-set">
+        <button class="mui-btn mui-icon mui-icon-more" id="editBtn"></button>
+        <button class="mui-btn mui-icon mui-icon-closeempty" id="deleteBtn"></button>
+        <p><strong>董丽丽</strong>（经理）</p>
+        <p><a href="tel:13543345670">13543345670</a></p>
+      </div>
+    </div>
+
+    <div class="contacts">
+      <span><img src=""/></span>
+      <div class="contacts-set">
+        <button class="mui-btn mui-icon mui-icon-more" id="editBtn"></button>
+        <button class="mui-btn mui-icon mui-icon-closeempty" id="deleteBtn"></button>
+        <p><strong>董丽丽</strong>（经理）</p>
+        <p><a href="tel:13543345670">13543345670</a></p>
+      </div>
+    </div>
   #end
 
   ## 当前页面脚本
   #block("page_script")
+  <script>
 
+     var usermodel = function(data){
+        if(typeof(data)=="object"){
+          var div1 =$("<div class='new-user'></div>")
+          var p1 = $("<p>联系人姓名</p>");
+          var p2 = $("<p>工作职位</p>");
+          var p3 = $("<p>联系电话</p>");
+          var put1 =$("<input type='text' id='userName' placeholder='联系人姓名不超过5个字' maxlength='5' value='"+(data.name==undefined||data.name==null?'':data.name)+"'/>");
+          var put2 =$("<input type='text' id='userRole' placeholder='所在职位/角色' maxlength='10' value='"+(data.role==undefined||data.role==null?'':data.role)+"'/>");
+          var put3 =$("<input type='text' id='userPhone' placeholder='联系电话号码' maxlength='15' value='"+(data.phone==undefined||data.phone==null?'':data.phone)+"'/>");
+          div1.append(p1,put1,p2,put2,p3,put3);
+          return div1.html();
+        }else{
+          console.error("参数数据类型错误："+data);
+        }
+     }
+
+     //添加联系人按钮响应
+     mui("header").on("tap","#addUser",function(){
+
+        var html =usermodel({name:'defaultName',role:'',phone:null});
+        mui.confirm(html, '新增门店联系人', ['保存','取消'], function(e){
+            if (e.index == 0){
+              
+              var name = $("#userName").val();
+              var role = $("#userRole").val();
+              var phone= $("#userPhone").val();
+              if(name==""){
+                mui.toast("联系人姓名不能为空");
+              }else if(role==""){
+                mui.toast("请输入工作职位");
+              }else if(phone==""){
+                mui.toast("请输入联系号码");
+              }else{
+                $.ajax({
+                  url:"",
+                  dataType:"json",
+                  type:"post",
+                  data:{},
+                  success:function(respon){
+
+                    loadding.move();     //关闭loadding层
+                  },
+                  error:function(){
+                    loadding.move();     //关闭loadding层
+                    mui.toast("网络异常，请稍后再试");
+                  }
+                });
+              }
+              return false;
+            }
+        });
+     });
+
+     //删除联系人提示
+     mui("div.mui-content").on("tap","#deleteBtn",function(){
+
+        var name = $(this).next().text();
+        mui.confirm("确定删除联系人："+name,"",['删除','取消'],function(e){
+            if(e.index==0){
+              $.ajax({
+                  url:"",
+                  dataType:"json",
+                  type:"post",
+                  data:{},
+                  success:function(respon){
+                    loadding.move();     //关闭loadding层
+                    mui.toast("删除成功");
+                  },
+                  error:function(){
+                    loadding.move();     //关闭loadding层
+                    mui.toast("网络异常，请稍后再试");
+                  }
+                });
+            }
+        });
+     });
+
+     //编辑或更新联系人
+     mui("div.mui-content").on("tap","#editBtn",function(){
+
+        var html =usermodel({name:'defaultName',role:'',phone:null});
+        mui.confirm(html, '修改联系人信息', ['保存','取消'], function(e){
+            if (e.index == 0){
+              
+              var name = $("#userName").val();
+              var role = $("#userRole").val();
+              var phone= $("#userPhone").val();
+              if(name==""){
+                mui.toast("联系人姓名不能为空");
+              }else if(role==""){
+                mui.toast("请输入工作职位");
+              }else if(phone==""){
+                mui.toast("请输入联系号码");
+              }else{
+                $.ajax({
+                  url:"",
+                  dataType:"json",
+                  type:"post",
+                  data:{},
+                  success:function(respon){
+
+                  },
+                  error:function(){
+                    mui.toast("网络异常，请稍后再试");
+                  }
+                });
+              }
+              return false;
+            }
+        });
+     });
+  </script>
   #end
 #end
